@@ -12,7 +12,7 @@ metadata:
 spec:
   project: {{ .project }}
   source: 
-    repoURL: https://github.com/samng1991/hkjc-test.git
+    repoURL: https://github.com/samng1991/hkjc-bootstrap.git
     targetRevision: {{ .apps.jaeger.version }} # commit, tag, branch
     path: applications/jaeger
     helm:

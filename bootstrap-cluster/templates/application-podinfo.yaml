@@ -21,7 +21,7 @@ spec:
       version: v3
   destination:
     server: {{ .destinationServer }}
-    namespace: team1
+    namespace: test
 {{- end }}
 ---
 

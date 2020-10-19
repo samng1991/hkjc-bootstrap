@@ -16,8 +16,8 @@ spec:
     helm:
       releaseName: cert-manager
       parameters:
-      - name: "installCRDs"
-        value: "true"
+    #   - name: "installCRDs"
+    #     value: "true"
     #   - name: "global.rbac.create"
     #     value: "false"
     #   - name: "serviceAccount.create"

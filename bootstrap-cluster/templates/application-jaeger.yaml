@@ -1,0 +1,31 @@
+{{- range .Values.clusters }}
+{{- if .apps.jaeger.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "jaeger"}}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source: 
+    repoURL: https://github.com/samng1991/hkjc-test.git
+    targetRevision: {{ .apps.jaeger.version }} # commit, tag, branch
+    path: applications/jaeger
+    helm:
+      releaseName: jaeger
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
+---
+
+{{- end }}

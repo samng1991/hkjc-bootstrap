@@ -1,0 +1,28 @@
+{{- range .Values.clusters }}
+{{- if .apps.podinfo.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "podinfo"}}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source: 
+    repoURL: https://stefanprodan.github.io/podinfo
+    targetRevision: {{ .apps.podinfo.version }} # commit, tag, branch
+    chart: podinfo
+    helm:
+      releaseName: podinfo
+      parameters:
+      - name: "image.repository"
+        value: docker.io/stefanprodan/podinfo
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: test
+{{- end }}
+---
+
+{{- end }}

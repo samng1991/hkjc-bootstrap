@@ -1,0 +1,42 @@
+{{- range .Values.clusters }}
+{{- if .apps.istioOperator.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "istio-operator"}}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source: 
+    repoURL: https://github.com/istio/istio.git
+    targetRevision: {{ .apps.istioOperator.version }} # commit, tag, branch
+    path: manifests/charts/istio-operator
+    helm:
+      releaseName: istio-operator
+      parameters:
+        - name: "hub"
+          value: "docker.io/istio"
+        - name: "tag"
+          value: {{ .apps.istioOperator.version }}
+        - name: "operatorNamespace"
+          value: "istio-operator"
+        - name: "istioNamespace"
+          value: "istio-system"
+        - name: "revision"
+          value: {{ .apps.istioOperator.version | replace "." "-" }}
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: istio-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
+---
+
+{{- end }}

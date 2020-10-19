@@ -1,0 +1,36 @@
+{{- range .Values.clusters }}
+  {{- if .apps.flagger.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "flagger"}}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source:
+    repoURL: https://raw.githubusercontent.com/samng1991/helm-chart-repo/main/flagger
+    targetRevision: {{ .apps.flagger.version }} # commit, tag, branch
+    chart: flagger
+    helm:
+      releaseName: flagger
+      parameters:
+        - name: "crd.create"
+          value: "false"
+        - name: "meshProvider"
+          value: "istio"
+        - name: "metricsServer"
+          value: "http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090"
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  {{- end }}
+---
+
+{{- end }}

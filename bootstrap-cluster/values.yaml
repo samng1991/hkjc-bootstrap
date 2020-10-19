@@ -1,0 +1,59 @@
+clusters:
+- name: localhost
+  project: default
+  destinationServer: https://kubernetes.default.svc
+  apps:
+    certManager:
+      enabled: ture
+      version: v1.0.2
+    flagger:
+      enabled: ture
+      version: 1.2.0
+    flaggerCrd:
+      enabled: ture
+      version: master
+    flaggerLoadtester:
+      enabled: ture
+      version: 0.18.0
+    jaegerOperator:
+      enabled: ture
+      version: 2.17.0
+    jaeger:
+      enabled: ture
+      version: localhost-sam
+    kubePrometheusStack:
+      enabled: ture
+      version: 9.4.9
+    metricsServer:
+      enabled: ture
+      version: 2.11.1
+    istioOperator:
+      enabled: ture
+      version: 1.6.8
+    istio:
+      enabled: ture
+      version: localhost-sam
+    podinfo:
+      enabled: ture
+      version: 5.0.2
+# - name: other-clusters
+#   destinationServer: https://kubernetes.default.svc
+#   apps:
+#     certManager:
+#       enabled: ture
+#       version: v1.0.2
+#     jaegerOperator:
+#       enabled: ture
+#       version: 2.17.0
+#     jaeger:
+#       enabled: ture
+#       version: localhost-sam
+#     kubePrometheusStack:
+#       enabled: ture
+#       version: 9.4.9
+#     metricsServer:
+#       enabled: ture
+#       version: 2.11.2
+#     istioOperator:
+#       enabled: ture
+#       version: 1.6.8

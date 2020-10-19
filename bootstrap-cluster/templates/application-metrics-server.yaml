@@ -1,0 +1,40 @@
+{{- range .Values.clusters }}
+{{- if .apps.metricsServer.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "metrics-server"}}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source: 
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: {{ .apps.metricsServer.version }} # commit, tag, branch
+    chart: metrics-server
+    helm:
+      releaseName: metrics-server
+      # parameters:
+      # - name: "rbac.create"
+      #   value: "false"
+      # - name: "serviceAccount.create"
+      #   value: "false"
+      # - name: "serviceAccount.name"
+      #   value: metrics-server
+      # - name: "apiService.create"
+      #   value: "false"
+      values: |
+        args: ["--kubelet-preferred-address-types=InternalIP", "--kubelet-insecure-tls"]
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
+---
+
+{{- end }}

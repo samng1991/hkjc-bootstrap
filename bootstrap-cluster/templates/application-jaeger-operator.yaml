@@ -1,0 +1,31 @@
+{{- range .Values.clusters }}
+{{- if .apps.jaegerOperator.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "jaeger-operator"}}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source: 
+    repoURL: https://jaegertracing.github.io/helm-charts 
+    targetRevision: {{ .apps.jaegerOperator.version }} # commit, tag, branch
+    chart: jaeger-operator
+    helm:
+      releaseName: jaeger-operator
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
+---
+
+{{- end }}

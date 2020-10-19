@@ -1,0 +1,29 @@
+{{- range .Values.clusters }}
+  {{- if .apps.flaggerLoadtester.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "flagger-loadtester"}}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source:
+    repoURL: https://raw.githubusercontent.com/samng1991/helm-chart-repo/main/flagger
+    targetRevision: {{ .apps.flaggerLoadtester.version }} # commit, tag, branch
+    chart: loadtester
+    helm:
+      releaseName: flagger-loadtester
+      version: v3
+  destination:
+    server: {{ .destinationServer }}
+    namespace: test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  {{- end }}
+---
+
+{{- end }}

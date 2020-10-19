@@ -1,0 +1,28 @@
+{{- range .Values.clusters }}
+  {{- if .apps.flaggerCrd.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "flagger-crd"}}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source:
+    repoURL: https://github.com/weaveworks/flagger
+    targetRevision: {{ .apps.flaggerCrd.version }} # commit, tag, branch
+    path: charts/flagger/crds
+  destination:
+    server: {{ .destinationServer }}
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  {{- end }}
+---
+
+{{- end }}

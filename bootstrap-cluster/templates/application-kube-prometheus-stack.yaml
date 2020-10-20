@@ -24,6 +24,10 @@ spec:
   destination:
     server: {{ .destinationServer }}
     namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 {{- end }}
 ---
 

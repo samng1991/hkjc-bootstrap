@@ -15,9 +15,9 @@ spec:
     chart: kube-prometheus-stack
     helm:
       releaseName: kube-prometheus-stack
-      parameters:
-      - name: "prometheusOperator.admissionWebhooks.failurePolicy"
-        value: Ignore
+      # parameters:
+      # - name: "prometheusOperator.admissionWebhooks.failurePolicy"
+      #   value: Ignore
       version: v3
   destination:
     server: {{ .destinationServer }}

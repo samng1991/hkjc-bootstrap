@@ -16,8 +16,10 @@ spec:
     helm:
       releaseName: kube-prometheus-stack
       parameters:
-      - name: "prometheusOperator.admissionWebhooks.failurePolicy"
-        value: Ignore
+      # - name: "prometheusOperator.admissionWebhooks.failurePolicy"
+      #   value: Ignore
+      - name: "prometheusOperator.admissionWebhooks.enabled"
+        value: "false"
       - name: "prometheusOperator.tlsProxy.enabled"
         value: "false"
       version: v3

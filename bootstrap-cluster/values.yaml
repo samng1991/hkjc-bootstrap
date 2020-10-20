@@ -22,7 +22,7 @@ clusters:
       enabled: ture
       version: localhost-sam
     kubePrometheusStack:
-      enabled: ture
+      enabled: false
       version: 9.4.9
     metricsServer:
       enabled: ture

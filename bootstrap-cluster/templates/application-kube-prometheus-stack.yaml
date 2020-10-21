@@ -15,7 +15,7 @@ spec:
     chart: kube-prometheus-stack
     helm:
       releaseName: kube-prometheus-stack
-      parameters:
+      # parameters:
       # - name: "prometheusOperator.admissionWebhooks.failurePolicy"
       #   value: Ignore
       # - name: "prometheusOperator.admissionWebhooks.enabled"

@@ -18,10 +18,10 @@ spec:
       parameters:
       # - name: "prometheusOperator.admissionWebhooks.failurePolicy"
       #   value: Ignore
-      - name: "prometheusOperator.admissionWebhooks.enabled"
-        value: "false"
-      - name: "prometheusOperator.tlsProxy.enabled"
-        value: "false"
+      # - name: "prometheusOperator.admissionWebhooks.enabled"
+      #   value: "false"
+      # - name: "prometheusOperator.tlsProxy.enabled"
+      #   value: "false"
       version: v3
   destination:
     server: {{ .destinationServer }}

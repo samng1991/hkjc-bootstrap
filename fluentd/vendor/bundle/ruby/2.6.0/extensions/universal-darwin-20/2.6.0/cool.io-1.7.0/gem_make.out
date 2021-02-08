@@ -1,0 +1,28 @@
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/cool.io-1.7.0/ext/iobuffer
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210208-98996-1bri8kd.rb extconf.rb
+checking for main() in -lc... yes
+checking for HAVE_RB_IO_T in ruby/io.h... yes
+checking for rb_io_t.fd in ruby/io.h... yes
+creating Makefile
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/cool.io-1.7.0/ext/iobuffer
+make "DESTDIR=" clean
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/cool.io-1.7.0/ext/iobuffer
+make "DESTDIR="
+compiling iobuffer.c
+iobuffer.c:636:31: warning: initializing 'char *' with an expression of type 'unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+        char           *loc, *s = head->data + head->start, *e = head->data + head->end;
+                              ^   ~~~~~~~~~~~~~~~~~~~~~~~~
+iobuffer.c:636:62: warning: initializing 'char *' with an expression of type 'unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+        char           *loc, *s = head->data + head->start, *e = head->data + head->end;
+                                                             ^   ~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+linking shared-object iobuffer_ext.bundle
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.Internal.sdk/usr/local/lib'
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.Internal.sdk/usr/local/lib'
+ld: warning: ignoring file iobuffer.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/cool.io-1.7.0/ext/iobuffer
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 iobuffer_ext.bundle ./.gem.20210208-98996-tlf260

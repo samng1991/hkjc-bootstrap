@@ -1,0 +1,89 @@
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/oj-3.11.2/ext/oj
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210208-98996-1ldil6m.rb extconf.rb
+>>>>> Creating Makefile for ruby version 2.6.3 on universal.x86_64-darwin20 <<<<<
+checking for rb_time_timespec()... yes
+checking for rb_ivar_count()... yes
+checking for rb_ivar_foreach()... yes
+checking for stpcpy()... yes
+checking for rb_data_object_wrap()... yes
+checking for pthread_mutex_init()... yes
+creating Makefile
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/oj-3.11.2/ext/oj
+make "DESTDIR=" clean
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/oj-3.11.2/ext/oj
+make "DESTDIR="
+compiling cache8.c
+compiling circarray.c
+compiling code.c
+compiling compat.c
+compiling custom.c
+compiling dump.c
+compiling dump_compat.c
+compiling dump_leaf.c
+compiling dump_object.c
+compiling dump_strict.c
+compiling err.c
+compiling fast.c
+compiling hash.c
+compiling hash_test.c
+compiling mimic_json.c
+compiling object.c
+compiling odd.c
+compiling oj.c
+compiling parse.c
+compiling rails.c
+compiling reader.c
+compiling resolve.c
+compiling rxclass.c
+compiling saj.c
+compiling scp.c
+compiling sparse.c
+compiling stream_writer.c
+compiling strict.c
+compiling string_writer.c
+compiling trace.c
+compiling util.c
+compiling val_stack.c
+compiling wab.c
+linking shared-object oj/oj.bundle
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.Internal.sdk/usr/local/lib'
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.Internal.sdk/usr/local/lib'
+ld: warning: ignoring file cache8.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file circarray.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file code.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file custom.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file dump.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file dump_leaf.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file compat.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file dump_compat.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file dump_strict.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file err.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file dump_object.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file fast.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file hash_test.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file odd.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file object.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file mimic_json.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file hash.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file oj.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file reader.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file rails.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file resolve.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file saj.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file scp.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file rxclass.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file stream_writer.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file parse.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file strict.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file trace.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file util.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file val_stack.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file sparse.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file string_writer.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file wab.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+
+current directory: /Users/samng1991/Git/fluentd/vendor/bundle/ruby/2.6.0/gems/oj-3.11.2/ext/oj
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 oj.bundle ./.gem.20210208-98996-3muc4z/oj

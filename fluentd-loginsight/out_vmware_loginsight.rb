@@ -216,12 +216,23 @@ module Fluent
             fields << {"name" => key, "content" => value}
           end
         end
-        log.encode('utf-8', :invalid => :replace, :undef => :replace)
-        event = {
-          "fields" => fields,
-          "text" => log.gsub(/^$\n/, ''),
-          "timestamp" => time * 1000
-        }
+        event = {}
+        begin
+          log.encode('utf-8', :invalid => :replace, :undef => :replace)
+          event = {
+            "fields" => fields,
+            "text" => log.gsub(/^$\n/, ''),
+            "timestamp" => time * 1000
+          }
+        rescue Exception=>e
+          event = {
+            "fields" => fields,
+            "text" => log,
+            "timestamp" => time * 1000
+          }
+          $log.warn "Handled create event object exception: " "#{e.class}, '#{e.message}', " \
+                        "\n Log: #{log.truncate(30)}"
+        end
         event
       end
 

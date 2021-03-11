@@ -15,8 +15,10 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev git" \
     && apt-get install \
     -y --no-install-recommends \
     $buildDeps $runtimeDeps net-tools \
-    && git clone https://github.com/shadjiiski/fluent-plugin-vmware-loginsight.git -b feature-buffered-mode /tmp/fluent-plugin-vmware-loginsight \
-    && cd /tmp/fluent-plugin-vmware-loginsight \
+    && git clone https://github.com/shadjiiski/fluent-plugin-vmware-loginsight.git -b feature-buffered-mode /tmp/fluent-plugin-vmware-loginsight
+
+COPY out_vmware_loginsight.rb /tmp/fluent-plugin-vmware-loginsight/lib/fluent/plugin
+RUN cd /tmp/fluent-plugin-vmware-loginsight \
     && gem build fluent-plugin-vmware-loginsight.gemspec \
     && gem install bundler --version 2.1.4 \
     && bundle config silence_root_warning true \
@@ -38,6 +40,7 @@ RUN touch /fluentd/etc/disable.conf
 # Copy plugins
 COPY plugins /fluentd/plugins/
 COPY entrypoint.sh /fluentd/entrypoint.sh
+RUN chmod +x /fluentd/entrypoint.sh
 
 # Environment variables
 ENV FLUENTD_OPT=""

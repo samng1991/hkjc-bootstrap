@@ -216,6 +216,7 @@ module Fluent
             fields << {"name" => key, "content" => value}
           end
         end
+        log.encode('utf-8', :invalid => :replace, :undef => :replace)
         event = {
           "fields" => fields,
           "text" => log.gsub(/^$\n/, ''),

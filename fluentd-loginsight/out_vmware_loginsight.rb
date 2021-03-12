@@ -13,6 +13,7 @@ require "fluent/plugin/output"
 require 'json'
 require 'net/http'
 require 'uri'
+require "base64"
 
 module Fluent
   module Plugin
@@ -218,20 +219,23 @@ module Fluent
         end
         event = {}
         begin
-          log.encode('utf-8', :invalid => :replace, :undef => :replace)
+          if ! log.valid_encoding?
+            log = log.encode('utf-8', :invalid => :replace, :undef => :replace)
+            $log.warn "Handled invalid log encoding, Log: #{log[1..128]}"
+          end
           event = {
             "fields" => fields,
             "text" => log.gsub(/^$\n/, ''),
             "timestamp" => time * 1000
           }
         rescue Exception=>e
+          log = Base64.encode64(log)
+          $log.warn "Unable to handle utf-8 encode: " "#{e.class}, '#{e.message}'. " "Trying base64 encode log: #{log}"
           event = {
             "fields" => fields,
-            "text" => log,
+            "text" => log.gsub(/^$\n/, ''),
             "timestamp" => time * 1000
           }
-          $log.warn "Handled create event object exception: " "#{e.class}, '#{e.message}', " \
-                        "\n Log: #{log.truncate(30)}"
         end
         event
       end
